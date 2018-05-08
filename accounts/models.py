@@ -40,7 +40,7 @@ class UserProfile(AbstractBaseUser,PermissionsMixin):
 
 
 class Item(models.Model):
-    GENERES = (
+    TYPE=(
         ('A','Action'),
         ('B','Adventure'),
         ('C','Comedy'),
@@ -51,9 +51,9 @@ class Item(models.Model):
 
     movie_title = models.CharField(max_length=50)
     movie_description = models.CharField(max_length=90)
-    movie_type = models.CharField(max_length=1, choices=GENERES)
+    movie_type = models.CharField(max_length=1, choices=TYPE)
     movie_images = models.ImageField(upload_to='realapp/images')
 
 
-    def __str__(self):
-        return self.name + ": " + str(self.movie_images)
+    # def __str__(self):
+    #     return self.name + ": " + str(self.movie_images)
