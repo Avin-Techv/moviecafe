@@ -1,26 +1,64 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
-from django.http import HttpResponseForbidden
+from django.shortcuts import render
+from django.contrib import messages
+from django.views.generic import FormView,TemplateView
+from accounts.forms import *
+from .models import *
 from django.http import HttpResponse
-from accounts.forms import RegisterUserForm
-from django.contrib.auth.models import User
-from django.db import models
+from django.contrib.auth import *
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 
-class RegisterUserView(CreateView):
-    form_class = RegisterUserForm
-    template_name = "register.html"
+class RegisterUserView(FormView):
 
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return HttpResponseForbidden()
+        template_name = "accounts/register.html"
+        form_class = RegisterUserForm
+        success_url = 'accounts/home/'
 
-        return super(RegisterUserView, self).dispatch(request, *args, **kwargs)
+        def form_valid(self, form):
+            get_user_model().objects.create_user(form.cleaned_data.get('email'),
+                                                 form.cleaned_data.get('password'),
+                                                 form.cleaned_data.get('mobile_no'),
+                                                 form.cleaned_data.get('name')
+                                                 )
+            return render(self.request,"accounts/home.html")
 
-    def form_valid(self,form):
-        user = form.save(commit=False)
-        user.set_password(form.cleaned_data['password'])
-        user.save()
-        return render(self.request,'userhome.html')
-        #return HttpResponse('User Registered')
+class LoginUserView(FormView):
+
+        template_name = "accounts/login.html"
+        form_class = LoginUserForm
+
+        def post(self, request, *args, **kwargs):
+                email = request.POST['email']
+                password = request.POST['password']
+                # try:
+                print(email, password, "")
+                user = authenticate(request, email=email, password=password)
+                print("auth", str(authenticate(email=email, password=password)))
+
+
+                if user is not None:
+                        login(request, user)
+                        return render(request, 'accounts/home.html')
+
+                else:
+                        return HttpResponse("invalid")
+
+class View(FormView):
+        # pass
+        template_name = "accounts/addmovie.html"
+        form_class = MovieAddForm
+        success_url = '/thanks/'
+
+        def form_valid(self, form):
+
+                form.save()
+                return render(self.request, "accounts/home.html")
+
+class HomeUserView(FormView):
+        def form_valid(self, form):
+                return render(self.request, 'accounts/home.html')
+
+class MovieAddForm(FormView):
+    pass
