@@ -10,6 +10,9 @@ from django.contrib.auth import get_user_model
 
 # Create your views here.
 
+def home(request):
+    return render(request, 'accounts/home.html')
+
 class RegisterUserView(FormView):
 
         template_name = "accounts/register.html"
@@ -57,6 +60,10 @@ class View(FormView):
                 return render(self.request, "accounts/home.html")
 
 class HomeUserView(FormView):
+        template_name = "accounts/home.html"
+        form_class = MovieAddForm
+        success_url = 'accounts/home/'
+
         def form_valid(self, form):
                 return render(self.request, 'accounts/home.html')
 

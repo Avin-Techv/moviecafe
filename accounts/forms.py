@@ -1,14 +1,17 @@
-from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
+from .models import UserProfile
 
 class RegisterUserForm(forms.ModelForm):
+    name=forms.CharField(max_length=10)
+    email=forms.EmailField(max_length=50)
+    mobile_no = forms.IntegerField()
     password = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
+
 
     class Meta:
-        model = User
-        fields = ['username','email']
+            model = UserProfile
+            fields =['name', 'email', 'mobile_no','password']
 
     # validate password
 
@@ -22,13 +25,16 @@ class RegisterUserForm(forms.ModelForm):
 
 class LoginUserForm(forms.ModelForm):
     username = forms.CharField(widget=forms.TextInput())
-
     password = forms.CharField(widget=forms.PasswordInput())
 
 
     class Meta:
-        model = User
+        model = UserProfile
         fields = ['username','password']
 
 class MovieAddForm(forms.ModelForm):
     movie_title = forms.CharField(widget=forms.CharField)
+
+    class Meta:
+        model =UserProfile
+        fields = ['movie_title']
