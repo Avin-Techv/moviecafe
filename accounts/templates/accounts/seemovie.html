@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <blockquote class="blockquote text-center">
+        <div class="p-3 mb-2 bg-info text-white"> <h1 class="display-3">MOVIE DETAILS</h1> </div>
+    </blockquote>
+
+</head>
+<body>
+
+    <form action =" " method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <h3>MOVIES</h3>
+            <br><br>
+            {% for movie_context in moviecount %}
+
+            <a href="{%url 'accounts:reg'%}">{{ movie_context.moviename }}</a>
+            <br>
+
+           {% endfor %}
+    </form>
+</body>
+</html>
