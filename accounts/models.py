@@ -6,7 +6,7 @@ from django.contrib.auth.models import PermissionsMixin
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self,email,password=None, mobile_no=None,name=None):
+    def create_user(self, email, password=None, mobile_no=None, name=None):
         if not email:
             raise ValueError('Users must have an email address')
 
@@ -19,14 +19,11 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self,email,password,name,mobile_no):
-        user=self.create_user(
-        email,
-        password=password,name=name,mobile_no=mobile_no
-    )
+    def create_superuser(self, email, password, name, mobile_no):
+        user = self.create_user(email, password=password, name=name, mobile_no=mobile_no)
         user.is_admin = True
-        #user.is_staff = True
-        user.is_superuser=True
+        user.is_staff = True
+        user.is_superuser = True
         user.save(using=self._db)
         return user
 
@@ -36,7 +33,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=50, unique=True)
     mobile_no = models.IntegerField()
 
-    #is_staff = models.BooleanField(('staff status'), default=False,)
+    is_staff = models.BooleanField(('staff status'), default=False,)
     is_superuser = models.BooleanField(('staff status'),default=False)
 
     objects = MyUserManager()
@@ -45,20 +42,13 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
 
 class Item(models.Model):
-    TYPE=(
-        ('A','Action'),
-        ('B','Adventure'),
-        ('C','Comedy'),
-        ('D','Crime'),
-        ('E','Drama'),
-        ('F','Horrer'),
-    )
 
-    movie_title = models.CharField(max_length=50)
-    movie_description = models.CharField(max_length=90)
-    movie_type = models.CharField(max_length=1, choices=TYPE)
-    # movie_images = models.ImageField(upload_to='accounts/images')
-
-
+    moviename = models.CharField(max_length=50)
+    hours = models.CharField(max_length=90)
+    category = models.CharField(max_length=10)
+    poster = models.ImageField(upload_to='accounts/images', default="accounts/images/default_poster.jpg")
     # def __str__(self):
     #     return self.name + ": " + str(self.movie_images)
+    
+    def __str__(self):
+        return self.moviename

@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>POST YOUR AD</title>
+    <title>Home</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <blockquote class="blockquote text-center">
+        <div class="p-3 mb-2 bg-info text-white"> <h1 class="display-3">ADD MOVIE</h1> </div>
+    </blockquote>
+
 </head>
 <body>
-    <h1>POST YOUR </h1>
 
-    <form action =" " method="post" enctype="multipart/form-data">
+    <form action ="{% url 'accounts:viewmovie' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+            <p>Movie Name :</p>
+            <input type="text" name="moviename">
+            <p>Hours :</p>
+            <input type="text" name="hours">
+            <p>Category :</p>
+            <input type="text" name="category"><br>
+            <br>
+            <p>Poster :</p>
+            <input name="poster" type="file">
+            <br>
             <input type="submit" value="Add Movie" />
     </form>
 

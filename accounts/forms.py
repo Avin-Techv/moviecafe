@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import UserProfile
+from .models import UserProfile, Item
+
 
 class RegisterUserForm(forms.ModelForm):
     name=forms.CharField(max_length=10)
@@ -8,10 +9,9 @@ class RegisterUserForm(forms.ModelForm):
     mobile_no = forms.IntegerField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-
     class Meta:
             model = UserProfile
-            fields =['name', 'email', 'mobile_no','password']
+            fields = ['name', 'email', 'mobile_no', 'password']
 
     # validate password
 
@@ -27,14 +27,18 @@ class LoginUserForm(forms.ModelForm):
     username = forms.CharField(widget=forms.TextInput())
     password = forms.CharField(widget=forms.PasswordInput())
 
-
     class Meta:
         model = UserProfile
-        fields = ['username','password']
+        fields = ['username', 'password']
+
 
 class MovieAddForm(forms.ModelForm):
-    movie_title = forms.CharField(widget=forms.CharField)
+    # moviename = forms.CharField()
+    # hours = forms.CharField()
+    # category = forms.CharField()
+    # poster = forms.ImageField()
 
     class Meta:
-        model =UserProfile
-        fields = ['movie_title']
+        model = Item
+        fields = ['moviename', 'hours', 'category', 'poster']
+
