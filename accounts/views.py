@@ -1,13 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import FormView,ListView
-from .forms import *
-from .models import *
-from django.http import HttpResponse
+from django.views.generic import FormView
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import *
-from django.contrib.auth import get_user_model
-#from django.views import generic
+from django.contrib.auth import get_user_model, logout
 from django.views.generic.list import ListView
 from django.utils import timezone
+from .forms import *
+from .models import *
 
 
 def home(request):
@@ -26,14 +25,13 @@ class RegisterUserView(FormView):
                                                  form.cleaned_data.get('mobile_no'),
                                                  form.cleaned_data.get('name')
                                                  )
-            return render(self.request,"accounts/home.html")
+            return render(self.request, "accounts/home.html")
 
 
 class LoginUserView(FormView):
 
         template_name = "accounts/login.html"
         form_class = LoginUserForm
-
 
         def post(self, request, *args, **kwargs):
                 print("Hai")
@@ -73,7 +71,7 @@ class HomeUserView(ListView):
 
         model = Item
 
-        def form_valid(self, form):
+        def form_valid(self):
                 return render(self.request, 'accounts/home.html')
 
 # class DetailsView(ListView):
@@ -92,6 +90,20 @@ class IndexView(ListView):
 #     model = Item
 #     template_name = 'accounts/seemovie.html'
 #     context_object_name = 'context_movie'
+
+# class LogoutView(ListView):
+#     template_name = 'accounts/logged_out.html'
+#     model = Item
+#
+#     def logout_view(self, request):
+#         logout(request)
+#         return render(self.request, "accounts/home.html")
+
+class LogoutView(FormView):
+    def get(self, request, *args, **kwargs):
+        # print (self.request.user.username)
+        logout(request)
+        return HttpResponseRedirect('/')
 
 
 class ArticleListView(ListView):

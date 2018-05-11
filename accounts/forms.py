@@ -33,12 +33,7 @@ class LoginUserForm(forms.ModelForm):
 
 
 class MovieAddForm(forms.ModelForm):
-    # moviename = forms.CharField()
-    # hours = forms.CharField()
-    # category = forms.CharField()
-    # poster = forms.ImageField()
 
     class Meta:
         model = Item
         fields = ['moviename', 'hours', 'category', 'poster']
-

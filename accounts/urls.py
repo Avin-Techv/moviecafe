@@ -10,5 +10,6 @@ urlpatterns = [
     path('home', views.HomeUserView.as_view(), name="home"),
     path('login', views.LoginUserView.as_view(), name="login"),
     path('viewmovie', views.ViewMovie.as_view(), name="viewmovie"),
-    path('seemovie',views.IndexView.as_view(),name="seemovie"),
+    path('seemovie', views.IndexView.as_view(), name="seemovie"),
+    path('logged_out', views.LogoutView.as_view(), name="logged_out"),
 ]
