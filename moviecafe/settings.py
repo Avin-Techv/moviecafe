@@ -137,12 +137,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'home'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'avin.techversant@gmail.com'
+EMAIL_HOST_PASSWORD = 'avintechversant123@'
+EMAIL_PORT = 587
+
+LOGIN_URL = 'accounts:login'
+LOGOUT_URL = 'accounts:logged_out'
+LOGIN_REDIRECT_URL = 'accounts:home'
 
 SOCIAL_AUTH_GITHUB_KEY = 'f2fa124d24dc6313bbcf'
 SOCIAL_AUTH_GITHUB_SECRET = '603bc86b66ddd04c5ad2b79357d81925f15da14e'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1821999154768943'
+SOCIAL_AUTH_FACEBOOK_SECRET = '3ebdf305bda1cac3a8d7478beca7ddc8'
 
 AUTH_USER_MODEL = 'accounts.UserProfile'
 

@@ -4,6 +4,7 @@ from django.conf.urls import url
 from .views import home
 
 app_name = 'accounts'
+
 urlpatterns = [
     url(r'^$', home),
     path('register', views.RegisterUserView.as_view(), name="reg"),

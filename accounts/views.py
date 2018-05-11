@@ -10,7 +10,6 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 
 
-
 class RegisterUserView(FormView):
 
         template_name = "accounts/register.html"
@@ -117,7 +116,7 @@ class ArticleListView(ListView):
 
 @login_required
 def home(request):
-    return render(request, 'accounts/home.html')
+    return render(request, 'accounts/login.html')
 
 
 def home(request):

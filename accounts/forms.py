@@ -1,6 +1,9 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import UserProfile, Item
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class RegisterUserForm(forms.ModelForm):
@@ -37,3 +40,13 @@ class MovieAddForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ['moviename', 'hours', 'category', 'poster']
+
+
+class SignupForm(UserCreationForm):
+    email = forms.EmailField(max_length=200, help_text='Required')
+
+
+class Meta:
+    model = User
+    fields = ('username', 'email', 'password')
+
