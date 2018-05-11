@@ -36,8 +36,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=50, unique=True)
     mobile_no = models.CharField(validators=[phone_regex], max_length=17, blank=True)
 
-    is_staff = models.BooleanField(('staff status'), default=False)
-    is_superuser = models.BooleanField(('staff status'), default=False)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
 
     objects = MyUserManager()
     USERNAME_FIELD = 'email'
