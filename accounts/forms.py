@@ -24,12 +24,12 @@ class RegisterUserForm(forms.ModelForm):
 
 
 class LoginUserForm(forms.ModelForm):
-    username = forms.CharField(widget=forms.TextInput())
+    email = forms.EmailField(widget=forms.EmailInput())
     password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = UserProfile
-        fields = ['username', 'password']
+        fields = ['email', 'password']
 
 
 class MovieAddForm(forms.ModelForm):

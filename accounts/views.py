@@ -34,12 +34,13 @@ class LoginUserView(FormView):
         template_name = "accounts/login.html"
         form_class = LoginUserForm
 
+
         def post(self, request, *args, **kwargs):
+                print("Hai")
                 email = request.POST.get('email')
                 password = request.POST.get('password')
                 # try:
-                print(email, password, "")
-                user = authenticate(request, email=email, password=password)
+                user = authenticate(email=email, password=password)
                 print("auth", str(authenticate(email=email, password=password)))
                 if user is not None:
                         login(request, user)
@@ -55,7 +56,6 @@ class ViewMovie(FormView):
         success_url = '/thanks/'
 
         def form_valid(self, form):
-                print('haiiiii')
                 moviename = form.cleaned_data['moviename']
                 hours = form.cleaned_data['hours']
                 category = form.cleaned_data['category']
@@ -63,8 +63,6 @@ class ViewMovie(FormView):
                 print(poster)
 
                 Item.objects.create(moviename=moviename, hours=hours, category=category, poster=poster)
-
-
                 return render(self.request, "accounts/home.html")
 
 
