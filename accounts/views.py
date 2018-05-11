@@ -7,10 +7,8 @@ from django.views.generic.list import ListView
 from django.utils import timezone
 from .forms import *
 from .models import *
+from django.contrib.auth.decorators import login_required
 
-
-def home(request):
-    return render(request, 'accounts/home.html')
 
 
 class RegisterUserView(FormView):
@@ -115,4 +113,13 @@ class ArticleListView(ListView):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
+
+
+@login_required
+def home(request):
+    return render(request, 'accounts/home.html')
+
+
+def home(request):
+    return render(request, 'accounts/home.html')
 

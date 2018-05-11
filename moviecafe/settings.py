@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'movies',
-    'social_django',
+    #'social_django',
 ]
 
 MIDDLEWARE = [
@@ -137,5 +137,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home'
+
+SOCIAL_AUTH_GITHUB_KEY = 'f2fa124d24dc6313bbcf'
+SOCIAL_AUTH_GITHUB_SECRET = '603bc86b66ddd04c5ad2b79357d81925f15da14e'
+
 AUTH_USER_MODEL = 'accounts.UserProfile'
+
+
 
