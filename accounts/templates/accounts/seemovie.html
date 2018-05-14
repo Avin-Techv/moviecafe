@@ -2,9 +2,9 @@
 <html>
 <head>
     <title>Home</title>
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
     <blockquote class="blockquote text-center">
@@ -24,21 +24,24 @@
 
                 <div class="row">
                     <div class="col-sm-4, ex-1">
-                        <img width=202px height=300px src="{{movie_context.poster.url}}"/>
-                    </div>
+                        <img width=154px height=200px src="{{ movie_context.poster.url }}"/>
 
-                    <div class="col-sm-8">
 
                     </div>
-            <h2>
-                <a href="#">{{ movie_context.moviename }}</a>
-                {{ movie_context.poster }}
-            </h2>
+
+                    <div class="col-sm-8"> <h2>
+                            <a href="#">{{ movie_context.moviename }}</a><br>
+                        <h5>Hours : {{ movie_context.hours }}&emsp;
+                            Category : {{ movie_context.category }}</h5>
+                            <!--{{ movie_context.poster }}-->
+                        </h2>
+                    </div>
             <br>
 
             <br>
 
            {% endfor %}
+                </div>
     </form>
 </body>
 </html>

@@ -18,14 +18,14 @@
         <div class="col col-md-auto">
             <p><h4> Hello, {{user.name}}. </h4></p>
             <p><h4>Handle that post-movie or pre-movie experience right with MovieCafe!</h4></p>
-            <p><a href="logged_out"> <h5 class= "text-left">Logout</h5></a></p>
+            <p><a href="{% url 'accounts:logout' %}"> <h5 class= "text-left">Logout</h5></a></p>
             <p><a href="accounts/search"><h5 class= "text-left">Search a Movie</h5></a></p>
             <p><a href="/review_list"><h5 class= "text-left">Movies I've Reviewed</h5></a></p>
             <p><a href="/suggested"><h5 class= "text-left">Suggested Searches</h5></a></p>
         </div>
     </div>
     {% else %}
-    <p><a href="/accounts/seemovie"><h3 class = "text-center"> Search a Movie</h3></a></p>
+    <p><a href="/accounts/see-movie"><h3 class = "text-center"> Search a Movie</h3></a></p>
     <p><a href="/accounts/login"><h3 class = "text-center"> Login</h3></a></p>
     <p><a href="/accounts/register"> <h3 class = "text-center"> Register</h3></a></p>
     {% endif %}

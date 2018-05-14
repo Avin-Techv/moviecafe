@@ -96,26 +96,6 @@ class IndexView(ListView):
         pagenate_by = 10
 
 
-# class DetailUserView(generic.DetailView):
-#     model = Item
-#     template_name = 'accounts/seemovie.html'
-#     context_object_name = 'context_movie'
-
-# class LogoutView(ListView):
-#     template_name = 'accounts/logged_out.html'
-#     model = Item
-#
-#     def logout_view(self, request):
-#         logout(request)
-#         return render(self.request, "accounts/home.html")
-
-class LogoutView(FormView):
-    def get(self, request, *args, **kwargs):
-        # print (self.request.user.username)
-        logout(request)
-        return HttpResponseRedirect('/')
-
-
 class ArticleListView(ListView):
 
     model = Item
