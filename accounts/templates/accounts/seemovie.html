@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% load static %}
+{% load ratings %}
 <html>
 <head>
     <title>Home</title>
@@ -11,12 +12,14 @@
         <div class="p-3 mb-2 bg-info text-white"> <h1 class="display-3">MOVIE DATABASE</h1> </div>
     </blockquote>
 
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+
 </head>
 <body>
 
     <form action ="." method="post" enctype="multipart/form-data">
         {% csrf_token %}
-            <h3>MOVIES</h3>
             <br><br>
             {% for movie_context in object_list %}
 
@@ -30,11 +33,18 @@
                     </div>
 
                     <div class="col-sm-8"> <h2>
-                            <a href="#">{{ movie_context.moviename }}</a><br>
+                           <font color="blue">{{ movie_context.moviename }}</font><br>
                         <h5>Hours : {{ movie_context.hours }}&emsp;
                             Category : {{ movie_context.category }}</h5>
                             <!--{{ movie_context.poster }}-->
                         </h2>
+                        {% ratings movie_context %}
+                        {% if request.user.is_superuser %}
+                        <br>
+                        <button class="green_button">Edit</button>
+                        &nbsp;
+                        <button class="red_button">Delete</button>
+                        {% endif %}
                     </div>
             <br>
 
@@ -42,6 +52,7 @@
 
            {% endfor %}
                 </div>
+            </div>
     </form>
 </body>
 </html>

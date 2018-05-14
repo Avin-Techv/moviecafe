@@ -1,19 +1,15 @@
-from django.shortcuts import render
-from django.views.generic import FormView
-from django.http import HttpResponse, HttpResponseRedirect
-
-from django.contrib.auth import get_user_model, logout
-from django.views.generic.list import ListView
-from django.utils import timezone
-
 from .forms import *
 from .models import *
+from django.utils import timezone
+from django.views.generic import FormView
+from django.contrib.auth import get_user_model
+from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
 
 """ import for email verification """
 
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from .forms import RegisterUserForm
 from django.contrib.sites.shortcuts import get_current_site

@@ -11,12 +11,14 @@
     <title></title>
 </head>
     <body>
-
-        <form action =" " method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
+        <div class="container-fluid">
+            <div class="col col-md-auto">
+                <form action =" " method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
             <input type="submit" value="REGISTER" />
-        </form>
-
+                </form>
+            </div>
+        </div>
     </body>
 </html>

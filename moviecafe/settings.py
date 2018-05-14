@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'movies',
     'social_django',
+    'star_ratings',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,6 @@ AUTHENTICATION_BACKENDS = (
 ROOT_URLCONF = 'moviecafe.urls'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-print (MEDIA_ROOT)
 MEDIA_URL = '/media/'
 
 TEMPLATES = [

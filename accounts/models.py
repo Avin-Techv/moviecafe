@@ -46,20 +46,35 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
 class Item(models.Model):
 
+    action = 'AC'
+    adventure = 'Adventure'
+    animation = 'AN'
+    comedy = 'CO'
+    crime = 'CR'
+    documentary = 'DO'
+    drama = 'DR'
+    fantasy = 'FA'
+    horror = 'HO'
+    mystery = 'MR'
+    sci_fi = 'SC'
+
+    movie_types = ((action, 'Action'),
+                   ('AD', 'Adventure'),
+                   ('AN', 'Animation'),
+                   ('CO', 'Comedy'),
+                   ('CR', 'Crime'),
+                   ('DO', 'Documentary'),
+                   ('DR', 'Drama'),
+                   ('FA', 'Fantasy'),
+                   ('HO', 'Horror'),
+                   ('MR', 'Mystery'),
+                   ('SC', 'Sci_Fi'),
+                   )
     moviename = models.CharField(max_length=50)
     hours = models.CharField(max_length=90)
     # category = models.CharField(max_length=10)
-
+    category = models.CharField(max_length=2, choices=movie_types)
     poster = models.ImageField(upload_to='accounts/images', default="accounts/images/default_poster.jpg")
-    # def __str__(self):
-    #     return self.name + ": " + str(self.movie_images)
-
-    MOVIE_TYPE = (
-        ('A', 'Action'),
-        ('B', 'Adventure'),
-        ('C', 'Sci-Fi'),
-    )
-    category = models.CharField(max_length=1, choices=MOVIE_TYPE, default='A')
 
     def __str__(self):
         return self.moviename
