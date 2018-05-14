@@ -1,5 +1,8 @@
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils import six
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class TokenGenerator(PasswordResetTokenGenerator):
@@ -12,12 +15,10 @@ class TokenGenerator(PasswordResetTokenGenerator):
 
 account_activation_token = TokenGenerator()
 
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField(max_length=200, help_text='Required')
+
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
