@@ -21,7 +21,7 @@ class MyUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password, name, mobile_no):
-        user = self.create_user(email, password=password, name=name, mobile_no=mobile_no)
+        user = self.create_user(username=email, password=password, name=name, mobile_no=mobile_no)
         user.is_admin = True
         user.is_staff = True
         user.is_superuser = True
@@ -34,22 +34,22 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
                                  message="Invalid Mobile Number !!!")
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50, unique=True)
-    mobile_no = models.CharField(validators=[phone_regex], max_length=17, blank=True)
-
+    mobile_no = models.CharField(validators=[phone_regex], max_length=10, blank=True)
+    username = models.CharField(max_length=50)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
     objects = MyUserManager()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name', 'mobile_no']
+    REQUIRED_FIELDS = ['name', 'mobile_no','username']
 
 
 class Item(models.Model):
 
     action = 'AC'
-    adventure = 'Adventure'
+    adventure = 'AD'
     animation = 'AN'
-    comedy = 'CO'
+    comedy = 'Comedy'
     crime = 'CR'
     documentary = 'DO'
     drama = 'DR'
@@ -59,9 +59,9 @@ class Item(models.Model):
     sci_fi = 'SC'
 
     movie_types = ((action, 'Action'),
-                   ('AD', 'Adventure'),
-                   ('AN', 'Animation'),
-                   ('CO', 'Comedy'),
+                   (adventure, 'Adventure'),
+                   (animation, 'Animation'),
+                   (comedy, 'Comedy'),
                    ('CR', 'Crime'),
                    ('DO', 'Documentary'),
                    ('DR', 'Drama'),

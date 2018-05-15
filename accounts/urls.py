@@ -7,10 +7,10 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('', views.HomeUserView.as_view(), name="home"),
-    path('register', views.RegisterUserView.as_view(), name="reg"),
-    path('login', views.LoginUserView.as_view(), name="login"),
-    path('viewmovie', views.ViewMovie.as_view(), name="viewmovie"),
-    path('see-movie', views.IndexView.as_view(), name="seemovie"),
+    path('register/', views.RegisterUserView.as_view(), name="reg"),
+    path('login/', views.LoginUserView.as_view(), name="login"),
+    path('viewmovie/', views.ViewMovie.as_view(), name="viewmovie"),
+    path('see-movie/', views.IndexView.as_view(), name="seemovie"),
     # path('logged_out', views.LogoutView.as_view(), name="logged_out"),
     path('logout/', auth_views.logout, {'next_page': 'accounts:home'}, name='logout'),
 

@@ -20,7 +20,9 @@
     <center>
         <form action ="" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            <table>
+                {{ form.as_table }}
+            </table><br>
             <input type="submit" value="LOGIN" /><br><br>
             <p><strong>-- OR --</strong></p>
             <a href="{% url 'social:begin' 'github' %}">Login with GitHub
@@ -35,8 +37,8 @@
         </form>
         <br>
         <p>New User
-        <a href="{%url 'accounts:reg'%}">REGISTER</a>
-        </p>
+        <a href="{% url 'accounts:reg' %}">REGISTER</a>
+        </p></center></div>
     </center>
     </body>
 </html>

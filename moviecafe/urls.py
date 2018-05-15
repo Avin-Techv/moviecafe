@@ -19,10 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('accounts.urls'), name='accounts_main'),
     path('admin/', admin.site.urls),
+    path('', include('accounts.urls'), name='accounts_main'),
     path('accounts/', include('accounts.urls'), name='accounts'),
     re_path(r'^oauth/', include('social_django.urls', namespace='social')),
-    path(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
+    re_path(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
               static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'social_django',
     'star_ratings',
     'django_mysql',
+    "sslserver",
 ]
 
 MIDDLEWARE = [
@@ -105,9 +106,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
             'read_default_file': '/etc/mysql/my.cnf',
+            'charset': 'utf8mb4',
         },
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -148,14 +151,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'localhost'
 EMAIL_HOST_USER = 'avin.techversant@gmail.com'
 EMAIL_HOST_PASSWORD = 'avintechversant123@'
 EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 LOGIN_URL = 'accounts:login'
 LOGOUT_URL = 'accounts:logged_out'
-LOGIN_REDIRECT_URL = 'accounts:home'
+LOGIN_REDIRECT_URL = 'accounts:seemovie'
 
 SOCIAL_AUTH_GITHUB_KEY = 'f2fa124d24dc6313bbcf'
 SOCIAL_AUTH_GITHUB_SECRET = '603bc86b66ddd04c5ad2b79357d81925f15da14e'

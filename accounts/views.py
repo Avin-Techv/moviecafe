@@ -18,6 +18,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage
+from django.core.signing import Signer
 
 
 class RegisterUserView(FormView):
@@ -44,8 +45,8 @@ class LoginUserView(FormView):
                 email = request.POST.get('email')
                 password = request.POST.get('password')
                 # try:
-                user = authenticate(email=email, password=password)
-                print("auth", str(authenticate(email=email, password=password)))
+                user = authenticate(username=email, password=password)
+                print("auth", str(authenticate(username=email, password=password)))
                 if user is not None:
                         login(request, user)
                         return render(request, 'accounts/home.html')
@@ -168,3 +169,4 @@ def activate(request, uidb64, token):
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
+
