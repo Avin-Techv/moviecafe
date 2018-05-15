@@ -6,8 +6,8 @@ from django.contrib.auth import views as auth_views
 app_name = 'accounts'
 
 urlpatterns = [
-    path('register', views.RegisterUserView.as_view(), name="reg"),
     path('', views.HomeUserView.as_view(), name="home"),
+    path('register', views.RegisterUserView.as_view(), name="reg"),
     path('login', views.LoginUserView.as_view(), name="login"),
     path('viewmovie', views.ViewMovie.as_view(), name="viewmovie"),
     path('see-movie', views.IndexView.as_view(), name="seemovie"),

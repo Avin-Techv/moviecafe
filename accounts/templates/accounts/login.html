@@ -24,10 +24,13 @@
             <input type="submit" value="LOGIN" /><br><br>
             <p><strong>-- OR --</strong></p>
             <a href="{% url 'social:begin' 'github' %}">Login with GitHub
-                <i class="fa fa-github" style="font-size:24px"></i><br><br>
+                <i class="fa fa-github" style="font-size:24px"></i><br>
                     <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook
                         <i class="fa fa-facebook" style="font-size:24px"></i>
-                    </a>
+                    </a><br>
+                <a href="{% url 'social:begin' 'twitter' %}">Login with Twitter
+                    <i class="fa fa-twitter" style="font-size:24px"></i><br>
+                </a>
             </a><br>
         </form>
         <br>

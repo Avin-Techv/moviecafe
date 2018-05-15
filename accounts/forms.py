@@ -4,7 +4,7 @@ from django import forms
 
 
 class RegisterUserForm(forms.ModelForm):
-    name = forms.CharField(max_length=10)
+    name = forms.CharField(max_length=50)
     email = forms.EmailField(max_length=50)
     mobile_no = forms.IntegerField()
     password1 = forms.CharField(widget=forms.PasswordInput)

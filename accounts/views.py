@@ -24,7 +24,7 @@ class RegisterUserView(FormView):
 
         template_name = "accounts/register.html"
         form_class = RegisterUserForm
-        success_url = 'accounts/home/'
+        success_url = 'accounts/register_success.html'
 
         def form_valid(self, form):
             get_user_model().objects.create_user(form.cleaned_data.get('email'),
@@ -32,7 +32,7 @@ class RegisterUserView(FormView):
                                                  form.cleaned_data.get('mobile_no'),
                                                  form.cleaned_data.get('name')
                                                  )
-            return render(self.request, "accounts/home.html")
+            return render(self.request, "accounts/register.html")
 
 
 class LoginUserView(FormView):
@@ -168,7 +168,3 @@ def activate(request, uidb64, token):
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
-
-
-
-
